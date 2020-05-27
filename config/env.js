@@ -3,7 +3,7 @@
  * @Autor: liang
  * @Date: 2020-05-23 10:02:51
  * @LastEditors: liang
- * @LastEditTime: 2020-05-24 21:38:44
+ * @LastEditTime: 2020-05-27 20:07:03
  */
 //获取NODE_ENV和REACT_APP_ *环境变量并将其准备为
 //通过webpack配置中的DefinePlugin注入到应用程序中。
@@ -19,7 +19,7 @@ function getClientEnvironment(publicUrl) {
       {
         // Useful for determining whether we’re running in production mode.
         // Most importantly, it switches React into the correct mode.
-        NODE_ENV: process.env.NODE_ENV || "development",
+        NODE_ENV: process.env.NODE_ENV || 'development',
         // Useful for resolving the correct path to static assets in `public`.
         // For example, <img src={process.env.PUBLIC_URL + '/img/logo.png'} />.
         // This should only be used as an escape hatch. Normally you would put
@@ -32,15 +32,15 @@ function getClientEnvironment(publicUrl) {
         // and `sockPort` options in webpack-dev-server.
         WDS_SOCKET_HOST: process.env.WDS_SOCKET_HOST,
         WDS_SOCKET_PATH: process.env.WDS_SOCKET_PATH,
-        WDS_SOCKET_PORT: process.env.WDS_SOCKET_PORT,
+        WDS_SOCKET_PORT: process.env.WDS_SOCKET_PORT
       }
     );
   const stringified = {
     'process.env': Object.keys(raw).reduce((env, key) => {
       env[key] = JSON.stringify(raw[key]);
       return env;
-    }, {}),
+    }, {})
   };
   return { raw, stringified };
 }
-module.exports = getClientEnvironment
+module.exports = getClientEnvironment;

@@ -3,10 +3,10 @@
  * @Autor: liang
  * @Date: 2020-05-21 16:55:23
  * @LastEditors: liang
- * @LastEditTime: 2020-05-25 14:30:13
+ * @LastEditTime: 2020-05-27 19:49:31
  */
 const paths = require('./paths');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const cssRegex = /\.css$/;
 const cssModuleRegex = /\.module\.css$/;
 const lessRegex = /\.less$/;
@@ -24,45 +24,45 @@ const modifyVars = {
   'border-radius-base': '4px', // 组件/浮层圆角
   'border-color-base': '#d9d9d9', // 边框色
   'box-shadow-base': '0 2px 8px rgba(0, 0, 0, 0.15)' // 浮层阴影
-}
-module.exports = function (webpackEnv = "development") {
-  const isEnvDevelopment = webpackEnv === "development";
-  const isEnvProduction = webpackEnv === "production";
+};
+module.exports = function (webpackEnv = 'development') {
+  const isEnvDevelopment = webpackEnv === 'development';
+  const isEnvProduction = webpackEnv === 'production';
   const getStyleLoaders = (cssOptions, preProcessor) => {
     const loaders = [
-      isEnvDevelopment && require.resolve("style-loader"),
+      isEnvDevelopment && require.resolve('style-loader'),
       isEnvProduction && {
         loader: MiniCssExtractPlugin.loader,
         // css is located in `static/css`, use '../../' to locate index.html folder
         // in production `paths.publicUrlOrPath` can be a relative path
-        options: paths.publicUrlOrPath.startsWith(".")
-          ? { publicPath: "../../" }
-          : {},
+        options: paths.publicUrlOrPath.startsWith('.')
+          ? { publicPath: '../../' }
+          : {}
       },
       {
-        loader: require.resolve("css-loader"),
-        options: cssOptions,
+        loader: require.resolve('css-loader'),
+        options: cssOptions
       },
       {
-        loader: require.resolve("postcss-loader"),
+        loader: require.resolve('postcss-loader'),
         options: {
-          ident: "postcss",
+          ident: 'postcss',
           plugins: () => [
-            require("postcss-flexbugs-fixes"),
-            require("postcss-preset-env")({
+            require('postcss-flexbugs-fixes'),
+            require('postcss-preset-env')({
               autoprefixer: {
-                flexbox: "no-2009",
+                flexbox: 'no-2009'
               },
-              stage: 3,
-            }),
+              stage: 3
+            })
           ]
         }
       }
-    ]
+    ];
     if (preProcessor) {
       loaders.push(
         {
-          loader: require.resolve("resolve-url-loader")
+          loader: require.resolve('resolve-url-loader')
         },
         {
           loader: require.resolve(preProcessor),
@@ -70,42 +70,42 @@ module.exports = function (webpackEnv = "development") {
             sourceMap: true,
             lessOptions: {
               modifyVars,
-              javascriptEnabled: true,
-            },
-          },
+              javascriptEnabled: true
+            }
+          }
         }
       );
     }
     return loaders.filter(Boolean);
-  }
+  };
   return {
     entry: [
       isEnvDevelopment &&
-      require.resolve("react-dev-utils/webpackHotDevClient"),    //开发环境加入，否则热更新无效
+        require.resolve('react-dev-utils/webpackHotDevClient'), //开发环境加入，否则热更新无效
       paths.appIndexJs
     ].filter(Boolean),
     resolve: {
       alias: {
-        "@": paths.appSrc
+        '@': paths.appSrc
       }
     },
     module: {
       rules: [
         {
           test: /\.(js|mjs|jsx|ts|tsx)$/,
-          enforce: "pre",
+          enforce: 'pre',
           use: [
             {
               options: {
                 cache: true,
-                formatter: require.resolve("react-dev-utils/eslintFormatter"),
-                eslintPath: require.resolve("eslint"),
-                resolvePluginsRelativeTo: __dirname,
+                formatter: require.resolve('react-dev-utils/eslintFormatter'),
+                eslintPath: require.resolve('eslint'),
+                resolvePluginsRelativeTo: __dirname
               },
-              loader: require.resolve("eslint-loader"),
-            },
+              loader: require.resolve('eslint-loader')
+            }
           ],
-          include: paths.appSrc,
+          include: paths.appSrc
         },
         {
           //“ oneOf”将遍历所有后续加载器，直到一个将
@@ -119,11 +119,17 @@ module.exports = function (webpackEnv = "development") {
                 loader: 'babel-loader',
                 options: {
                   presets: ['@babel/preset-env', '@babel/preset-react'],
-                  plugins: ['ramda', ['import', {
-                    libraryName: "antd",
-                    libraryDirectory: "es",
-                    style: true, //不用less，则是css，用less，此处为true
-                  }]]
+                  plugins: [
+                    'ramda',
+                    [
+                      'import',
+                      {
+                        libraryName: 'antd',
+                        libraryDirectory: 'es',
+                        style: true //不用less，则是css，用less，此处为true
+                      }
+                    ]
+                  ]
                 }
               }
             },
@@ -134,25 +140,28 @@ module.exports = function (webpackEnv = "development") {
                 importLoaders: 1,
                 sourceMap: false
               }),
-              sideEffects: true,
+              sideEffects: true
             },
             {
               test: lessRegex,
-              use: getStyleLoaders({
-                importLoaders: 3,
-                sourceMap: false
-              }, 'less-loader'),
+              use: getStyleLoaders(
+                {
+                  importLoaders: 3,
+                  sourceMap: false
+                },
+                'less-loader'
+              )
             },
             {
-              loader: require.resolve("file-loader"),
+              loader: require.resolve('file-loader'),
               exclude: [/\.(js|jsx|ts|tsx)$/, /\.html$/, /\.json$/],
               options: {
-                name: "static/media/[name].[hash:8].[ext]",
-              },
-            },
-          ],
-        },
-      ],
+                name: 'static/media/[name].[hash:8].[ext]'
+              }
+            }
+          ]
+        }
+      ]
     }
-  }
-}
+  };
+};

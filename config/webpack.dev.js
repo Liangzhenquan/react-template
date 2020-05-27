@@ -7,14 +7,14 @@
  */
 const merge = require('webpack-merge');
 const common = require('./webpack.base.js');
-const webpack = require("webpack");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const InterpolateHtmlPlugin = require("react-dev-utils/InterpolateHtmlPlugin");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const paths = require("./paths");
-const path = require('path')
-const getClientEnvironment = require("./env");
-const { appPackageJson } = paths
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const paths = require('./paths');
+const path = require('path');
+const getClientEnvironment = require('./env');
+const { appPackageJson } = paths;
 const env = getClientEnvironment(paths.publicUrlOrPath.slice(0, -1));
 module.exports = merge(common('development'), {
   mode: 'development',
@@ -23,8 +23,9 @@ module.exports = merge(common('development'), {
     pathinfo: true,
     filename: 'static/js/bundle.js',
     chunkFilename: 'static/js/[name].chunk.js',
-    devtoolModuleFilenameTemplate: ((info) => path.resolve(info.absoluteResourcePath).replace(/\\/g, "/")),
-    jsonpFunction: `webpackJsonp${appPackageJson.name}`,
+    devtoolModuleFilenameTemplate: (info) =>
+      path.resolve(info.absoluteResourcePath).replace(/\\/g, '/'),
+    jsonpFunction: `webpackJsonp${appPackageJson.name}`
   },
   devtool: 'source-map',
   plugins: [
@@ -34,7 +35,7 @@ module.exports = merge(common('development'), {
         {},
         {
           inject: true,
-          template: paths.appHtml,
+          template: paths.appHtml
         }
       )
     ),
@@ -49,6 +50,6 @@ module.exports = merge(common('development'), {
     //解决方案，要求用户选择导入特定的语言环境。
     // https://github.com/jmblog/how-to-optimize-momentjs-with-webpack
     //如果不使用Moment.js，则可以将其删除：
-    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
   ]
-})
+});
