@@ -3,7 +3,7 @@
  * @Autor: liang
  * @Date: 2020-05-21 16:55:23
  * @LastEditors: liang
- * @LastEditTime: 2020-05-27 19:49:31
+ * @LastEditTime: 2020-05-28 11:25:01
  */
 const paths = require('./paths');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -92,7 +92,7 @@ module.exports = function (webpackEnv = 'development') {
     module: {
       rules: [
         {
-          test: /\.(js|mjs|jsx|ts|tsx)$/,
+          test: /\.(js|jsx|ts|tsx)$/,
           enforce: 'pre',
           use: [
             {
@@ -100,7 +100,8 @@ module.exports = function (webpackEnv = 'development') {
                 cache: true,
                 formatter: require.resolve('react-dev-utils/eslintFormatter'),
                 eslintPath: require.resolve('eslint'),
-                resolvePluginsRelativeTo: __dirname
+                resolvePluginsRelativeTo: __dirname,
+                fix: true
               },
               loader: require.resolve('eslint-loader')
             }
@@ -128,7 +129,8 @@ module.exports = function (webpackEnv = 'development') {
                         libraryDirectory: 'es',
                         style: true //不用less，则是css，用less，此处为true
                       }
-                    ]
+                    ],
+                    '@babel/plugin-proposal-class-properties'
                   ]
                 }
               }

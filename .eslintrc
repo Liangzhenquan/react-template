@@ -1,4 +1,5 @@
 {
+  "parser": "babel-eslint",
   "parserOptions": {
     "ecmaVersion": 11,
     "ecmaFeatures": {
@@ -7,11 +8,7 @@
     "sourceType": "module"
   },
   "plugins": ["react"],
-  "extends": [
-    "eslint:recommended",
-    // "airbnb",
-    "plugin:prettier/recommended"
-  ],
+  "extends": ["eslint:recommended", "plugin:react/recommended"],
   "rules": {
     "no-var": 2, //禁止使用var声明
     "no-alert": 2, //禁止使用alert confirm prompt
@@ -22,7 +19,7 @@
     "camelcase": 2, //强制驼峰法命名
     "default-case": 2, //switch语句最后必须有default
     "eqeqeq": 2, //必须使用全等
-    "no-unused-vars": 0,
+    "no-unused-vars": 1,
     "no-undef": 0
     // "quotes": [
     //   2,
