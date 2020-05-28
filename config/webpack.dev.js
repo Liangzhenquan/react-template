@@ -3,7 +3,7 @@
  * @Autor: liang
  * @Date: 2020-05-21 17:01:09
  * @LastEditors: liang
- * @LastEditTime: 2020-05-24 21:39:00
+ * @LastEditTime: 2020-05-28 13:48:34
  */
 const merge = require('webpack-merge');
 const common = require('./webpack.base.js');
@@ -26,6 +26,12 @@ module.exports = merge(common('development'), {
     devtoolModuleFilenameTemplate: (info) =>
       path.resolve(info.absoluteResourcePath).replace(/\\/g, '/'),
     jsonpFunction: `webpackJsonp${appPackageJson.name}`
+  },
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+      name: false
+    }
   },
   devtool: 'source-map',
   plugins: [

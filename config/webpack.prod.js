@@ -3,7 +3,7 @@
  * @Autor: liang
  * @Date: 2020-05-21 17:30:26
  * @LastEditors: liang
- * @LastEditTime: 2020-05-24 21:41:55
+ * @LastEditTime: 2020-05-28 13:48:06
  */
 const merge = require('webpack-merge');
 const common = require('./webpack.base.js');
@@ -12,6 +12,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const getClientEnvironment = require('./env');
 const paths = require('./paths');
 const path = require('path');
@@ -28,6 +30,54 @@ module.exports = merge(common('production'), {
         .relative(paths.appSrc, info.absoluteResourcePath)
         .replace(/\\/g, '/'),
     jsonpFunction: `webpackJsonp${appPackageJson.name}`
+  },
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new TerserPlugin({
+        terserOptions: {
+          parse: {
+            ecma: 8
+          },
+          compress: {
+            ecma: 5,
+            warnings: false,
+            comparisons: false,
+            inline: 2
+          },
+          mangle: {
+            safari10: true
+          },
+          output: {
+            ecma: 5,
+            comments: false,
+            ascii_only: true
+          }
+        }
+      }),
+      new OptimizeCSSAssetsPlugin({
+        cssProcessorOptions: {
+          parser: safePostCssParser,
+          map: shouldUseSourceMap
+            ? {
+                //`inline：false`强制将sourcemap输出到
+                //单独的文件
+                inline: false,
+                //`annotation：true`将sourceMappingURL附加到
+                // css文件，帮助浏览器找到sourcemap
+                annotation: true
+              }
+            : false
+        },
+        cssProcessorPluginOptions: {
+          preset: ['default', { minifyFontValues: { removeQuotes: false } }]
+        }
+      })
+    ],
+    splitChunks: {
+      chunks: 'all',
+      name: false
+    }
   },
   devtool: 'source-map',
   plugins: [

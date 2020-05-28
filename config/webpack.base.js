@@ -3,10 +3,11 @@
  * @Autor: liang
  * @Date: 2020-05-21 16:55:23
  * @LastEditors: liang
- * @LastEditTime: 2020-05-28 11:25:01
+ * @LastEditTime: 2020-05-28 13:42:22
  */
 const paths = require('./paths');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
 const cssRegex = /\.css$/;
 const cssModuleRegex = /\.module\.css$/;
 const lessRegex = /\.less$/;

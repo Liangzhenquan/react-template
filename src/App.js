@@ -3,12 +3,12 @@
  * @Autor: liang
  * @Date: 2020-05-21 15:16:56
  * @LastEditors: liang
- * @LastEditTime: 2020-05-28 11:23:01
+ * @LastEditTime: 2020-05-28 13:21:34
  */
-import React, { useState } from 'react';
-import { Button, Slider } from 'antd';
-import 'normalize.css';
 import './index.less';
+import 'normalize.css';
+import { Button, Slider } from 'antd';
+import React, { useState } from 'react';
 class Text extends React.Component {
   state = {
     name: 'tom'
