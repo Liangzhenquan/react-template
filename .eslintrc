@@ -7,10 +7,10 @@
     },
     "sourceType": "module"
   },
-  "plugins": ["react"],
+  "plugins": ["react", "prettier"],
   "extends": ["eslint:recommended", "plugin:react/recommended"],
   "rules": {
-    "indent": ["error", 2], //该规则旨在强制使用一致的缩进风格。默认是 4个空格。
+    "prettier/prettier": "error",
     "no-var": 2, //禁止使用var声明
     "no-alert": 2, //禁止使用alert confirm prompt
     "no-array-constructor": 2, //禁止使用数组构造器
@@ -27,7 +27,7 @@
     "no-else-return": 2, //如果if语句里面有return,后面不能跟else语句
     "no-redeclare": 2, //禁止重复声明变量
     "max-depth": ["error", 4], //嵌套语句最大深度
-    "max-lines-per-function": ["error", 30], //函数最大行数
+    // "max-lines-per-function": ["error", 100], //函数最大行数
     "no-nested-ternary": 2, //禁止使用嵌套的三元表达式
     "sort-imports": 1 //import 排序，默认：{ "memberSyntaxSortOrder": ["none", "all", "multiple", "single"] }
     // "quotes": [

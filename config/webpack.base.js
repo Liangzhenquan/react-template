@@ -3,7 +3,7 @@
  * @Autor: liang
  * @Date: 2020-05-21 16:55:23
  * @LastEditors: liang
- * @LastEditTime: 2020-05-28 13:42:22
+ * @LastEditTime: 2020-05-29 10:15:48
  */
 const paths = require('./paths');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -98,7 +98,7 @@ module.exports = function (webpackEnv = 'development') {
           use: [
             {
               options: {
-                cache: true,
+                cache: false,
                 formatter: require.resolve('react-dev-utils/eslintFormatter'),
                 eslintPath: require.resolve('eslint'),
                 resolvePluginsRelativeTo: __dirname,
