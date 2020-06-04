@@ -1,6 +1,6 @@
 # 2.0 版本
 
-## 2.0.1
+## 2.0.0
 
 - 该版本将加入 axios 做为 http 请求
   > 使用 axios 请求库，加入 umijs 的 useRequest，
