@@ -3,14 +3,14 @@
  * @Autor: liang
  * @Date: 2020-05-28 14:08:05
  * @LastEditors: liang
- * @LastEditTime: 2020-05-29 10:31:46
+ * @LastEditTime: 2020-05-29 16:42:08
  */
 import { getStorage, storageKeys } from '@/utils/storage';
 import axios from 'axios';
 import { message } from 'antd';
 import qs from 'qs';
-import { useRequest } from '@umijs/hooks';
 import urls from '@/url';
+import { useRequest } from '@umijs/hooks';
 const isEnvDevelopment = process.env.NODE_ENV === 'development';
 const handleError = (status) => {
   switch (status) {
@@ -21,6 +21,7 @@ const handleError = (status) => {
       break;
   }
 };
+
 const instance = axios.create({
   baseURL: isEnvDevelopment ? urls.dev : urls.pro,
   timeout: 40000
@@ -33,9 +34,6 @@ instance.interceptors.request.use(
     if (token) {
       config.headers['Authorization'] = token;
     }
-    if (config.method === 'post') {
-      config.headers['Content-Type'] = 'application/x-www-form-urlencoded';
-    }
     return config;
   },
   (error) => {
@@ -46,7 +44,7 @@ instance.interceptors.request.use(
 // 添加响应拦截器
 instance.interceptors.response.use(
   (response) => {
-    return response;
+    return response.data;
   },
   (error) => {
     const { response } = error;
@@ -54,16 +52,12 @@ instance.interceptors.response.use(
     // return Promise.reject(error);
   }
 );
-const get = (url, params, config) => {
-  return useRequest(url, {
-    requestMethod: (param) => instance.get(param, { params }),
-    ...config
-  });
-};
-const post = (url, body, config) => {
-  return useRequest(url, {
-    requestMethod: (param) => instance.post(param, qs.stringify(body)),
-    ...config
-  });
+const get = (url, config) =>
+  useRequest((params) => instance.get(url, { params }), config);
+const post = (url, config) => {
+  return useRequest(
+    (params) => instance.post(url, qs.stringify(params)),
+    config
+  );
 };
 export { get, post };
