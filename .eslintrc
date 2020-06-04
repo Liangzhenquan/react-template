@@ -11,6 +11,7 @@
   "extends": ["eslint:recommended", "plugin:react/recommended"],
   "rules": {
     "prettier/prettier": "error",
+    "react/prop-types": 0,
     "no-var": 2, //禁止使用var声明
     "no-alert": 2, //禁止使用alert confirm prompt
     "no-array-constructor": 2, //禁止使用数组构造器

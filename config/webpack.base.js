@@ -3,7 +3,7 @@
  * @Autor: liang
  * @Date: 2020-05-21 16:55:23
  * @LastEditors: liang
- * @LastEditTime: 2020-05-29 10:15:48
+ * @LastEditTime: 2020-06-04 10:46:51
  */
 const paths = require('./paths');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -88,7 +88,8 @@ module.exports = function (webpackEnv = 'development') {
     resolve: {
       alias: {
         '@': paths.appSrc
-      }
+      },
+      extensions: ['.js', '.jsx']
     },
     module: {
       rules: [
