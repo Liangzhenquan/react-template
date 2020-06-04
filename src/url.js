@@ -3,14 +3,14 @@
  * @Autor: liang
  * @Date: 2020-05-29 10:25:19
  * @LastEditors: liang
- * @LastEditTime: 2020-06-04 11:13:24
+ * @LastEditTime: 2020-06-04 11:14:24
  */
 
 const urls = {
-  base: 'url',
-  pro: 'url',
-  dev: 'url',
-  socket: 'url'
+  base: 'http://api-test.dtbird.cn',
+  pro: 'http://api-test.dtbird.cn/api',
+  dev: 'http://api-test.dtbird.cn/api',
+  socket: 'http://api-test.dtbird.cn'
 };
 
 export default urls;
