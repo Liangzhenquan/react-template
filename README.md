@@ -29,3 +29,7 @@
 .eslint         --eslint配置
 .prettierrc     --prettier格式化的配置文件
 ```
+
+## 版本 bug 修复
+
+- 修复 import 引入模块必须输入完整路径的 bug
