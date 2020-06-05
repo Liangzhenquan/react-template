@@ -3,7 +3,7 @@
  * @Autor: liang
  * @Date: 2020-05-21 16:55:23
  * @LastEditors: liang
- * @LastEditTime: 2020-06-04 10:46:51
+ * @LastEditTime: 2020-06-05 13:25:12
  */
 const paths = require('./paths');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -12,7 +12,7 @@ const cssRegex = /\.css$/;
 const cssModuleRegex = /\.module\.css$/;
 const lessRegex = /\.less$/;
 const modifyVars = {
-  'primary-color': '#7546c9',
+  'primary-color': '#41CABF',
   'link-color': '#1890ff', // 链接色
   'success-color': '#52c41a', // 成功色
   'warning-color': '#faad14', // 警告色
@@ -82,7 +82,7 @@ module.exports = function (webpackEnv = 'development') {
   return {
     entry: [
       isEnvDevelopment &&
-        require.resolve('react-dev-utils/webpackHotDevClient'), //开发环境加入，否则热更新无效
+      require.resolve('react-dev-utils/webpackHotDevClient'), //开发环境加入，否则热更新无效
       paths.appIndexJs
     ].filter(Boolean),
     resolve: {
