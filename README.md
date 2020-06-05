@@ -18,6 +18,8 @@ yarn.lock
 - normalize.css 项目 css 默认样式兼容
 - ramda 函数式编程库
 - styled-components css-in-js 库
+- react-router-dom 路由配置
+- umijs/hooks 第三方 hooks 库，封装了许多常见的功能
 
 # 规范
 
@@ -36,3 +38,5 @@ yarn.lock
 - template-v2.0.0 --优化分支，eslint.prettierrc 配置 bug 优化，加入@umijs/hooks，并添加 API 请求，添加登录页面
 - tempalate-v2.0.1 --优化分支，添加 components 文件夹来存放公共组件。
   - ErrorBoundary.js --错误边界
+  - react-router-dom 配置了一级路由
+  - nprogress 顶部加载进度条
