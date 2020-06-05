@@ -33,3 +33,4 @@
 ## 版本 bug 修复
 
 - 修复 import 引入模块必须输入完整路径的 bug
+  到该版本，已经修复了部分遇到的 eslint 配置问题和 webpack 配置带来到问题，并引入了错误边界，umijs/hooks 和 react-router-dom，已经可以拿来即用。
