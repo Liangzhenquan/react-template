@@ -6,6 +6,6 @@ function Nprogress() {
   useEffect(() => {
     nprogress.done();
   });
-  return null;
+  return <React.Fragment />;
 }
 export default Nprogress;

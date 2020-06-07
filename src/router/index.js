@@ -3,8 +3,8 @@
  * @Autor: liang
  * @Date: 2020-06-05 13:55:45
  * @LastEditors: liang
- * @LastEditTime: 2020-06-05 13:59:06
+ * @LastEditTime: 2020-06-07 10:44:23
  */
-import { RouteWithRoutes, routes } from './config';
+import { RouteWithRoutes, RouteWithSubRoutes, routes } from './config';
 
-export { RouteWithRoutes, routes };
+export { RouteWithRoutes, RouteWithSubRoutes, routes };
