@@ -2,11 +2,11 @@
 
 ## 2.0.2
 
-- 该版本将加入 axios 做为 http 请求
+- 该版本加入 axios 做为 http 请求
   > 使用 axios 请求库，加入 umijs 的 useRequest，
   > websocket 加入，storage 封装，url 提取为 url.js
   > 加入 nprogress 加载进度条，增强交互，加入 react-router-dom
-- 将加入二级路由
+- 加入二级路由
 
 ## 当前目录结构
 
