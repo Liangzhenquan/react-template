@@ -3,7 +3,7 @@
  * @Autor: liang
  * @Date: 2020-06-05 13:55:57
  * @LastEditors: liang
- * @LastEditTime: 2020-06-07 14:13:03
+ * @LastEditTime: 2020-06-08 10:32:15
  */
 import React, { lazy } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
@@ -14,9 +14,8 @@ const Login = lazy(() => import('@/views/login/index.js'));
 const NoMatch = lazy(() => import('@/views/error/NoMatch'));
 
 // 首页
-const Layout = lazy(() => import('@/container/layout'));
+const Layout = lazy(() => import('@/container/AppLayout'));
 const Test = lazy(() => import('@/views/test'));
-
 const routes = [
   {
     path: '/login',
@@ -34,6 +33,28 @@ const routes = [
     children: [
       {
         path: '/',
+        name: 'one',
+        exact: true,
+        meta: { requiresAuth: true },
+        component: Test
+      },
+      {
+        path: '/one',
+        name: 'two',
+        exact: true,
+        meta: { requiresAuth: true },
+        component: Test
+      },
+      {
+        path: '/two',
+        name: 'three',
+        exact: true,
+        meta: { requiresAuth: true },
+        component: Test
+      },
+      {
+        path: '/single',
+        name: '菜单item',
         exact: true,
         meta: { requiresAuth: true },
         component: Test
@@ -41,6 +62,10 @@ const routes = [
     ]
   }
 ];
+
+/**
+ * [{group: 'hello'}]
+ */
 function RouterGuard({ children, meta, ...props }) {
   React.useEffect(() => {
     if (meta) {
